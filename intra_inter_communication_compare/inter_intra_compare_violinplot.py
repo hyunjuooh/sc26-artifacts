@@ -61,7 +61,7 @@ type_order = ['Intra-Node Memcpy', 'Intra-Node MPI_Get', 'Inter-Node MPI_Get']
 combined_df['type'] = pd.Categorical(combined_df['type'], categories=type_order, ordered=True)
 
 print("Data processing complete.")
-print("Generating plot...")
+
 plt.figure(figsize=(16, 9))
 
 # Create the violin plot with swapped axes

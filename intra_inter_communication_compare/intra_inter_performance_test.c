@@ -119,7 +119,7 @@ int main(int argc, char **argv) {
         printf("# Job configuration:\n");
         printf("#   World size: %d processes\n", wsize);
         printf("#   Node count: %d nodes (%d processes/node)\n", num_nodes, nsize);
-        printf("# Writing timing data to directory '%s'...\n", output_dir);
+        printf("# Writing timing data to directory '%s'\n", output_dir);
         fflush(stdout);
     }
     // Broadcast the number of nodes so all ranks know if inter-node comm is possible
