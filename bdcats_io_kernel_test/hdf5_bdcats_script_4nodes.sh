@@ -18,6 +18,10 @@ N_NODE=4
 PPN=32
 NCLIENT=$((PPN * N_NODE))
 
+# Build the evaluation code
+cc -I${HDF5_DIR}/include -L${HDF5_DIR}/lib -o vpic_hdf5 vpic_io_data_generation/hdf5_vpicio.c -lhdf5
+cc -I${HDF5_DIR}/include -L${HDF5_DIR}/lib -o bdcats_hdf5 bdcats_io_test/hdf5_bdcats_test.c -lhdf5
+
 echo "Starting bdcats test"
 
 # Create a path for your hdf5 data

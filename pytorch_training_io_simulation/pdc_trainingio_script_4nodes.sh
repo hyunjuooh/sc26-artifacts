@@ -34,6 +34,10 @@ export PATH="$PDC_DIR/include:$PDC_DIR/lib:$PATH"
 
 export DATA_DIR=/path/to/your/data
 
+# Build the evaluation code
+cc -I${PDC_DIR}/include -L${PDC_DIR}/lib -o pdc_generator data_generator/pdc_data_generator.c -lpdc
+cc -I${PDC_DIR}/include -L${PDC_DIR}/lib -o pdc_reader data_reader/pdc_data_reader.c -lpdc
+
 srun -N $N_NODE -n $NSERVER --ntasks-per-node=$SERVER_PPN -c 4  --cpu_bind=cores --overlap /pscratch/sd/h/hjoh16/pdc_work_space/install/pdc/bin/pdc_server &
 
 sleep 5	
@@ -42,7 +46,7 @@ srun -n $NCLIENT --ntasks-per-node=4 --ntasks-per-socket=4 -c 16 --overlap ./pdc
 
 sleep 600
 
-srun -n $NCLIENT --ntasks-per-node=4 --ntasks-per-socket=4 -c 16 --overlap ./pdc_reader_clientcache $TOTALFILE >> trainingio_pdc_4nodes.txt
+srun -n $NCLIENT --ntasks-per-node=4 --ntasks-per-socket=4 -c 16 --overlap ./pdc_reader $TOTALFILE >> trainingio_pdc_4nodes.txt
 
 srun -N $N_NODE -n $NSERVER --ntasks-per-node=$SERVER_PPN -c 4  --cpu_bind=cores --overlap /pscratch/sd/h/hjoh16/pdc_work_space/install/pdc/bin/close_server
 

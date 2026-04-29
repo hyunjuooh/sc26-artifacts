@@ -34,6 +34,10 @@ export PATH="$PDC_DIR/include:$PDC_DIR/lib:$PATH"
 
 export DATA_DIR=/path/to/your/data
 
+# Build the evaluation code
+cc -I${PDC_DIR}/include -L${PDC_DIR}/lib -o pdc_generator data_generator/pdc_data_generator.c -lpdc
+cc -I${PDC_DIR}/include -L${PDC_DIR}/lib -o pdc_reader_clientcache data_reader/pdc_data_reader_cache.c -lpdc
+
 srun -N $N_NODE -n $NSERVER --ntasks-per-node=$SERVER_PPN -c 4  --cpu_bind=cores --overlap /pscratch/sd/h/hjoh16/pdc_work_space/install/pdc/bin/pdc_server &
 
 sleep 5	

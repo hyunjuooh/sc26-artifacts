@@ -24,6 +24,10 @@ export PATH="$MERCURY_DIR/include:$MERCURY_DIR/lib:$PATH"
 export LD_LIBRARY_PATH="$PDC_DIR/lib:$LD_LIBRARY_PATH"
 export PATH="$PDC_DIR/include:$PDC_DIR/lib:$PATH"
 
+# Build the evaluation code
+cc -I${PDC_DIR}/include -L${PDC_DIR}/lib -o pdc_vpicio vpic_io_data_generation/pdc_vpicio.c -lpdc
+cc -I${PDC_DIR}/include -L${PDC_DIR}/lib -o pdc_bdcats bdcats_io_test/pdc_bdcats_test.c -lpdc
+
 N_NODE=4
 PPN=32
 NCLIENT=$((PPN * N_NODE))

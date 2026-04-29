@@ -23,6 +23,10 @@ export HDF5_DIR=/path/to/your/hdf5
 export LD_LIBRARY_PATH=$HDF5_DIR/lib:$LD_LIBRARY_PATH
 export DATA_DIR=/path/to/your/data
 
+# Build the evaluation code
+cc -I${HDF5_DIR}/include -L${HDF5_DIR}/lib -o generator data_generator/hdf5_data_generator.c -lhdf5
+cc -I${HDF5_DIR}/include -L${HDF5_DIR}/lib -o hdf5_reader_epoch5 data_reader/hdf5_data_reader.c -lhdf5
+
 srun -n $NCLIENT --ntasks-per-node=4 --ntasks-per-socket=4 -c 16 --overlap ./generator $TOTALFILE
 
 # sleep 10

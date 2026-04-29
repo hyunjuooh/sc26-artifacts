@@ -33,10 +33,7 @@
 #include <inttypes.h>
 #include "pdc.h"
 
-// #define NPARTICLES 8388608
-// #define NPARTICLES 1073741824
 #define NPARTICLES 268435456
-// #define NPARTICLES 536870912
 
 double
 uniform_random_number()
